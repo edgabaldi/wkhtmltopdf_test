@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from wkhtmltopdf.views import PDFTemplateView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+
+    url(
+        regex=r'^pdf/$',
+        view=PDFTemplateView.as_view(template_name='report/report.html', filename='my_pdf.pdf'),
+        name='pdf'
+    ),
 ]
